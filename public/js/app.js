@@ -35,7 +35,7 @@ App.AuthenticatedRoute = Ember.Route.extend({
     return $.getJSON(url, { token: token });
   },
 
-  events: {
+  actions: {
     error: function(reason, transition) {
       if (reason.status === 401) {
         this.redirectToLogin(transition);
@@ -75,6 +75,7 @@ App.LoginController = Ember.Controller.extend({
     localStorage.token = this.get('token');
   }.observes('token'),
 
+  actions: {
   login: function() {
 
     var self = this, data = this.getProperties('username', 'password');
@@ -99,5 +100,6 @@ App.LoginController = Ember.Controller.extend({
         }
       }
     });
+  }
   }
 });
